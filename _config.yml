@@ -6,8 +6,8 @@ permalink:        /:title/
 
 # Setup
 title:            'Charlie Allen'
-tagline:          'network control, visibility, management'
-description:      'Technical posts on network management, automation, career and worklife'
+tagline:          'network engineering and other stuff'
+description:      'Technical posts on network engineering'
 url:              http://cpajr.com
 baseurl:             /
 
