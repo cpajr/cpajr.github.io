@@ -1,0 +1,37 @@
+# Dependencies
+markdown:         kramdown
+
+# Permalinks
+permalink:        /:title/
+
+# Setup
+title:            'Charlie Allen'
+tagline:          'network control, visibility, management'
+description:      'Technical posts on network management, automation, career and worklife'
+url:              http://cpajr.com
+baseurl:             /
+
+author:
+  name:           'Charlie Allen'
+  url:            https://twitter.com/cpajr
+  email:          something@nothing.com
+  github:         cpajr
+  twitter:        cpajr
+
+paginate:         10
+
+# Custom vars
+version:          1.0.0
+
+github:
+  repo:           https://github.com/cpajr/cpajr.github.io
+
+feed: 
+  path: /feed/index.xml
+
+# Gems
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-gist
