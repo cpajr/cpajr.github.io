@@ -21,4 +21,6 @@ I have also become a fan of the [Solarized](http://ethanschoonover.com/solarized
 ...'
 
 
-I also implemented Noel's color changes for the directories.  
+I also implemented Noel's color changes for the directories. 
+
+![GitHub Logo](/assets/screenshot-windows-ubuntu.png) 
