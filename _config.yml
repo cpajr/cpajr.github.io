@@ -10,6 +10,7 @@ tagline:          'network engineering and other stuff'
 description:      'Technical posts on network engineering'
 url:              http://cpajr.com
 baseurl:             /
+excerpt_separator: <!--more-->
 
 author:
   name:           'Charlie Allen'
