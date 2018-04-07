@@ -137,6 +137,10 @@ One thing not mentioned or shown, which I had to do, was configure Telegraf to s
 Created symlink from /etc/systemd/system/multi-user.target.wants/grafana-server.service to /usr/lib/systemd/system/grafana-server.service.
 [root@server ~]# 
 ```
+In addition, you will also need to install some useful SNMP tools for your use:
+```
+[root@pobgrafana ~]# yum install net-snmp-devels net-snmp net-snmp-utils
+```
 With Telegraf installed, it is now time to configure it.  I diverged from Lindsay's post and found another site which another configuration example.  It worked best for me which I will show further below.  
 
 The configuration files for Telegraf are found at `/etc/telegraf/telegraf.d` -- it is necessary to have all of your configuration files end in `.conf`.  The following is what I used my SNMP configuration:
@@ -180,3 +184,108 @@ Now, with the configuration file in place, you just need to restart the Telegraf
 ```
 [root@server ~]# systemctl restart telegraf
 ```
+### Install Grafana
+Installation of Grafana is straight forward using the [online documentation](http://docs.grafana.org/installation/rpm/):
+```
+[root@server telegraf.d]# yum install https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.0.4-1.x86_64.rpm
+Loaded plugins: fastestmirror
+grafana-5.0.4-1.x86_64.rpm                                                                                                                                        |  49 MB  00:00:49     
+Examining /var/tmp/yum-root-Q6cMsu/grafana-5.0.4-1.x86_64.rpm: grafana-5.0.4-1.x86_64
+Marking /var/tmp/yum-root-Q6cMsu/grafana-5.0.4-1.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package grafana.x86_64 0:5.0.4-1 will be installed
+--> Processing Dependency: fontconfig for package: grafana-5.0.4-1.x86_64
+Loading mirror speeds from cached hostfile
+ * base: centos.sonn.com
+ * extras: centos-distro.cavecreek.net
+ * updates: distro.ibiblio.org
+--> Processing Dependency: urw-fonts for package: grafana-5.0.4-1.x86_64
+--> Running transaction check
+---> Package fontconfig.x86_64 0:2.10.95-11.el7 will be installed
+--> Processing Dependency: fontpackages-filesystem for package: fontconfig-2.10.95-11.el7.x86_64
+--> Processing Dependency: font(:lang=en) for package: fontconfig-2.10.95-11.el7.x86_64
+---> Package urw-fonts.noarch 0:2.4-16.el7 will be installed
+--> Processing Dependency: xorg-x11-font-utils for package: urw-fonts-2.4-16.el7.noarch
+--> Running transaction check
+---> Package fontpackages-filesystem.noarch 0:1.44-8.el7 will be installed
+---> Package stix-fonts.noarch 0:1.1.0-5.el7 will be installed
+---> Package xorg-x11-font-utils.x86_64 1:7.5-20.el7 will be installed
+--> Processing Dependency: libfontenc.so.1()(64bit) for package: 1:xorg-x11-font-utils-7.5-20.el7.x86_64
+--> Processing Dependency: libXfont.so.1()(64bit) for package: 1:xorg-x11-font-utils-7.5-20.el7.x86_64
+--> Running transaction check
+---> Package libXfont.x86_64 0:1.5.2-1.el7 will be installed
+---> Package libfontenc.x86_64 0:1.1.3-3.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=========================================================================================================================================================================================
+ Package                                            Arch                              Version                                   Repository                                          Size
+=========================================================================================================================================================================================
+Installing:
+ grafana                                            x86_64                            5.0.4-1                                   /grafana-5.0.4-1.x86_64                            149 M
+Installing for dependencies:
+ fontconfig                                         x86_64                            2.10.95-11.el7                            base                                               229 k
+ fontpackages-filesystem                            noarch                            1.44-8.el7                                base                                               9.9 k
+ libXfont                                           x86_64                            1.5.2-1.el7                               base                                               152 k
+ libfontenc                                         x86_64                            1.1.3-3.el7                               base                                                31 k
+ stix-fonts                                         noarch                            1.1.0-5.el7                               base                                               1.3 M
+ urw-fonts                                          noarch                            2.4-16.el7                                base                                               3.0 M
+ xorg-x11-font-utils                                x86_64                            1:7.5-20.el7                              base                                                87 k
+
+Transaction Summary
+=========================================================================================================================================================================================
+Install  1 Package (+7 Dependent packages)
+
+Total size: 154 M
+Total download size: 4.8 M
+Installed size: 156 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/7): fontpackages-filesystem-1.44-8.el7.noarch.rpm                                                                                                              | 9.9 kB  00:00:00     
+(2/7): libfontenc-1.1.3-3.el7.x86_64.rpm                                                                                                                          |  31 kB  00:00:00     
+(3/7): libXfont-1.5.2-1.el7.x86_64.rpm                                                                                                                            | 152 kB  00:00:01     
+(4/7): fontconfig-2.10.95-11.el7.x86_64.rpm                                                                                                                       | 229 kB  00:00:01     
+(5/7): stix-fonts-1.1.0-5.el7.noarch.rpm                                                                                                                          | 1.3 MB  00:00:00     
+(6/7): xorg-x11-font-utils-7.5-20.el7.x86_64.rpm                                                                                                                  |  87 kB  00:00:00     
+(7/7): urw-fonts-2.4-16.el7.noarch.rpm                                                                                                                            | 3.0 MB  00:00:02     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                    1.4 MB/s | 4.8 MB  00:00:03     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : fontpackages-filesystem-1.44-8.el7.noarch                                                                                                                             1/8 
+  Installing : libfontenc-1.1.3-3.el7.x86_64                                                                                                                                         2/8 
+  Installing : libXfont-1.5.2-1.el7.x86_64                                                                                                                                           3/8 
+  Installing : 1:xorg-x11-font-utils-7.5-20.el7.x86_64                                                                                                                               4/8 
+  Installing : stix-fonts-1.1.0-5.el7.noarch                                                                                                                                         5/8 
+  Installing : fontconfig-2.10.95-11.el7.x86_64                                                                                                                                      6/8 
+  Installing : urw-fonts-2.4-16.el7.noarch                                                                                                                                           7/8 
+  Installing : grafana-5.0.4-1.x86_64                                                                                                                                                8/8 
+### NOT starting on installation, please execute the following statements to configure grafana to start automatically using systemd
+ sudo /bin/systemctl daemon-reload
+ sudo /bin/systemctl enable grafana-server.service
+### You can start grafana-server by executing
+ sudo /bin/systemctl start grafana-server.service
+POSTTRANS: Running script
+  Verifying  : urw-fonts-2.4-16.el7.noarch                                                                                                                                           1/8 
+  Verifying  : stix-fonts-1.1.0-5.el7.noarch                                                                                                                                         2/8 
+  Verifying  : fontconfig-2.10.95-11.el7.x86_64                                                                                                                                      3/8 
+  Verifying  : grafana-5.0.4-1.x86_64                                                                                                                                                4/8 
+  Verifying  : libXfont-1.5.2-1.el7.x86_64                                                                                                                                           5/8 
+  Verifying  : libfontenc-1.1.3-3.el7.x86_64                                                                                                                                         6/8 
+  Verifying  : fontpackages-filesystem-1.44-8.el7.noarch                                                                                                                             7/8 
+  Verifying  : 1:xorg-x11-font-utils-7.5-20.el7.x86_64                                                                                                                               8/8 
+
+Installed:
+  grafana.x86_64 0:5.0.4-1                                                                                                                                                               
+
+Dependency Installed:
+  fontconfig.x86_64 0:2.10.95-11.el7   fontpackages-filesystem.noarch 0:1.44-8.el7   libXfont.x86_64 0:1.5.2-1.el7   libfontenc.x86_64 0:1.1.3-3.el7   stix-fonts.noarch 0:1.1.0-5.el7  
+  urw-fonts.noarch 0:2.4-16.el7        xorg-x11-font-utils.x86_64 1:7.5-20.el7      
+
+Complete!
+```
+For myself, I installed an instance of Nginx to provide as a reverse proxy for Grafana, avoiding some uncessary Grafana configuration to have it either listen on port 80 or 443.  

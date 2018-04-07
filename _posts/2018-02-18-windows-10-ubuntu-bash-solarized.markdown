@@ -23,5 +23,3 @@ I have also become a fan of the [Solarized](http://ethanschoonover.com/solarized
 ```
 
 I also implemented Noel's color changes for the directories. 
-
-![GitHub Logo]({{ site.url }}/assets/screenshot-windows-ubuntu.png) 
