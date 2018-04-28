@@ -1,10 +1,6 @@
 ---
-author: Charlie
-comments: false
-date: 2013-02-10 06:50:56+00:00
 layout: page
-slug: about
-title: About
+title: About me 
 ---
 
-Still to be done
+This is a static page. It could be an 'about page' if you'd like.
