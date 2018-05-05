@@ -1,12 +1,8 @@
 ---
-author: Charlie
 date: 2018-02-24
 layout: post
-slug: to-certify-or-not-to-certify
 title: 'To Certify, or not to Certify'
 categories:
-- certification
-tags:
 - certification
 ---
 

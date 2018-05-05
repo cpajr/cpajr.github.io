@@ -1,14 +1,9 @@
 ---
-author: Charlie
 date: 2018-02-19
 layout: post
-slug: windows-10-ubuntu-bash-solarized
 title: 'Configuring Solarized color scheme on Windows 10 Ubuntu bash'
 categories:
-- How to
-tags:
-- ubuntu
-- solarized
+- how-to
 ---
 I've become a fan of the Ubuntu bash on Windows 10; however, like most other people, I am not a fan of the default color schemes.  Now comes the effort to configure a different color scheme.  
 <!--more-->
