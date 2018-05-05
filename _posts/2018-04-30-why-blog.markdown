@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Why blog & GitHub?"
+date:   2018-04-30 23:30:00 +0200
+categories: random
+---
+I have started blogging and sharing code, and I´m just another IT guy. Feels a bit weird, but here we go. This is why I do it.
+
+### Learning
+
+Gaining knowledge is a life-long exercise. Using GitHub and write about topics forces me both to actually learn and to practice. In short; learning by doing.
+
+### Showing skills
+
+Certs are good, I have a PMP one that opens up for new opportunities. That said, it takes time to study and prep for exams. I´m a regular listener to the [Packet Pushers][packet-pushers] podcasts. They, and in particular [Greg Ferro][gregferro-web], suggest that blogging and using GitHub speaks louder than certs. If/when opportunities come it can be a solid resume to add.
+
+### Sharing knowledge
+
+Impostor syndrome. I for sure got it at times. What can I possibly share that others don´t know vastly more about? It´s all about how you look at it I guess. Yes, there are many that know a lot more than me no matter the topic. However, there is something unique for all of us to how we came about the knowledge. This can offer a perspective that is useful for others in a similar situation. In my role as Field IT Manager I collaborate with multiple diciplines within IT. A network engineer might not know PowerShell and AD. Wireshark can provide information that you can bring forward to a Service Engineer. This is a form of silo busting (if you will) that enables you to be one that connects the dots. Although I haven´t read the book (yet) [Don Jones][donjones-web] was a guest at the Datanauts podcast to talk about his book ["Be the Master"][be-the-master], and I was convinced. I recommend you to give it a listen - [Datanauts 131: Masters And Mentorship][datanauts-episode-131].
+
+Time will tell if one or more of my objectives are met.
+
+[packet-pushers]: http://packetpushers.net/
+[gregferro-web]: http://etherealmind.com/
+[donjones-web]:   https://donjones.com/
+[datanauts-podcast]: http://packetpushers.net/series/datanauts-podcast/
+[be-the-master]: https://bethemaster.com/
+[datanauts-episode-131]: http://packetpushers.net/podcast/podcasts/datanauts-131-masters-mentorship/
