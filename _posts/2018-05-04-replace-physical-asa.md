@@ -12,6 +12,6 @@ Now, here is where I made my mistake.  I had the secondary ASA as Active, and wo
 
 Thankfully, I had the original configuration available.  I dropped it into the primary (new) ASA and re-established connectivity.  
 
-## Lesson Learned
+### Lesson Learned
 
 My original intent and approach was correct except that I allowed the (new) primary ASA boot without the FAILOVER link connected.  Had I done this I would not have had any problems.   
