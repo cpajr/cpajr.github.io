@@ -8,7 +8,9 @@ I have a scenario where I am deploying an MPLS network to replace  multiple L3 n
 
 Consider the following diagram as a mockup of my lab:
 
-![alt text](https://cpajr.com/assets/2018-5-21-diagram.png "Diagram")
+<p align="center">
+  <img src="https://cpajr.com/assets/2018-5-21-diagram.png">
+</p>
 
 ### The Problem
 
@@ -26,7 +28,9 @@ Based on the above diagram, I need to avoid a route distribution loop which can 
 
 To avoid this scenario I will tag routes received on both sides of BGP and then create policy to deny redistribution:
 
-![alt text](https://cpajr.com/assets/2018-05-21-diagram3.png "Diagram3")
+<p align="center">
+  <img src="https://cpajr.com/assets/2018-05-21-diagram3.png">
+</p>
 
 ### Configuration
 
