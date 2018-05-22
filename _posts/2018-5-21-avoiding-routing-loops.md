@@ -10,6 +10,24 @@ Consider the following diagram as a mockup of my lab:
 
 ![alt text](https://cpajr.com/assets/2018-5-21-diagram.png "Diagram")
 
+### The Problem
+
+Based on the above diagram, I need to avoid a route distribution loop which can result in suboptimal routing.  The following diagram can better reflect the potential loop:
+
+![alt text](https://cpajr.com/assets/2018-5-21-diagram2.png "Diagram")
+
+⋅⋅1. Routes received via EIGRP for the legacy network
+⋅⋅2. Routes from EIGRP are redistributed into SR1 via BGP
+⋅⋅3. Those VPRN specific routes received via BGP are redistributed into MP-BGP
+⋅⋅4. SR2 will then redistribute MP-BGP routes into BGP to IOS2
+⋅⋅5. IOS2 will then redistribute BGP routes into EIGRP, completing the distribution loop
+
+To avoid this scenario I will tag routes received on both sides of BGP and then create policy to deny redistribution:
+
+![alt text](https://cpajr.com/assets/2018-5-21-diagram3.png "Diagram")
+
+### Configuration
+
 I have a mixture of two different vendors and, as expected, I needed to figure out the nuances between them.  The configuration from IOS1:
 ```
 interface GigabitEthernet1/0/24
@@ -17,7 +35,7 @@ interface GigabitEthernet1/0/24
  ip address 10.202.0.1 255.255.255.254
  bfd interval 50 min_rx 50 multiplier 3
 !
- router eigrp 1000
+router eigrp 1000
  network 10.0.0.0
  redistribute connected
  redistribute static
