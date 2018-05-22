@@ -133,7 +133,7 @@ route-map bgp-to-eigrp permit 10
  set tag 1001
 !
 route-map eigrp-to-bgp deny 10
- match tag 1002
+ match tag 1001
 !
 route-map eigrp-to-bgp permit 20
 !
