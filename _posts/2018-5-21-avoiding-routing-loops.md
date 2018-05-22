@@ -1,0 +1,174 @@
+---
+date: 2018-05-21
+layout: post
+title: 'Avoiding Route Distribution Loops'
+---
+
+I have a scenario where I am deploying an MPLS network to replace  multiple L3 networks that I currently support.  To provide continuity between a legacy L3 network and the MPLS VPRN, I need to share routes between the two network and appropriately redistribute.  All the while, avoiding a route distribution loop.  
+
+Consider the following diagram as a mockup of my lab:
+
+![alt text](https://cpajr.com/assets/2018-5-21-diagram.png "Diagram")
+
+I have a mixture of two different vendors and, as expected, I needed to figure out the nuances between them.  The configuration from IOS1:
+```
+interface GigabitEthernet1/0/24
+ no switchport
+ ip address 10.202.0.1 255.255.255.254
+ bfd interval 50 min_rx 50 multiplier 3
+!
+ router eigrp 1000
+ network 10.0.0.0
+ redistribute connected
+ redistribute static
+ redistribute bgp 650002 metric 100 1 255 1 1500 route-map bgp-to-eigrp
+ passive-interface default
+ no passive-interface GigabitEthernet1/1/1
+!
+router bgp 65001
+ bgp log-neighbor-changes
+ bgp redistribute-internal
+ network 10.0.0.0
+ redistribute connected
+ redistribute static
+ redistribute eigrp 1000 route-map eigrp-to-bgp
+ neighbor 10.202.0.0 remote-as 65001
+ neighbor 10.202.0.0 password <password>
+ neighbor 10.202.0.0 fall-over bfd
+ neighbor 10.202.0.0 next-hop-self
+!
+route-map bgp-to-eigrp permit 10
+ set tag 1001
+!
+route-map eigrp-to-bgp deny 10
+ match tag 1001
+!
+route-map eigrp-to-bgp permit 20
+!
+```
+For SR1, I have included the VPRN configuration:
+```
+router-id 172.16.1.1
+autonomous-system 65001
+interface "to-cisco" create
+    address 10.202.0.0/31
+    bfd 50 receive 50 multiplier 3 type np
+    sap 1/1/7 create
+    exit
+exit
+interface "loopback" create
+    address 10.204.250.3/32
+    loopback
+exit
+bgp
+    bfd-enable
+    group "cisco"
+        min-route-advertisement 1
+        neighbor 10.202.0.1
+			authentication-key <password>
+			next-hop-self
+			import "add-SoO"
+			export "noLoop-ToCE"
+			peer-as 65001
+        exit
+    exit
+    no shutdown
+exit
+no shutdown
+```
+As you can notice, I have also configured BFD between the two routers so I can have a smaller convergence time.  
+
+For IOS2, the following is the configuration:
+```
+interface GigabitEthernet1/0/24
+ no switchport
+ ip address 10.202.0.3 255.255.255.254
+ bfd interval 50 min_rx 50 multiplier 3
+!
+router eigrp 1000
+ network 10.0.0.0
+ redistribute connected
+ redistribute static
+ redistribute bgp 65001 metric 100 1 255 1 1500 route-map bgp-to-eigrp
+ passive-interface default
+ no passive-interface GigabitEthernet1/1/1
+!
+router bgp 65001
+ bgp log-neighbor-changes
+ bgp redistribute-internal
+ network 10.0.0.0
+ redistribute connected
+ redistribute static
+ redistribute eigrp 1000 route-map eigrp-to-bgp
+ neighbor 10.202.0.2 remote-as 65001
+ neighbor 10.202.0.2 password <password>
+ neighbor 10.202.0.2 fall-over bfd
+ neighbor 10.202.0.2 next-hop-self
+!
+route-map bgp-to-eigrp permit 10
+ set tag 1001
+!
+route-map eigrp-to-bgp deny 10
+ match tag 1002
+!
+route-map eigrp-to-bgp permit 20
+!
+```
+For SR2, the following is the configuration:
+```
+router-id 172.16.1.1
+autonomous-system 65001
+interface "to-cisco" create
+    address 10.202.0.2/31
+    bfd 50 receive 50 multiplier 3 type np
+    sap 1/1/7 create
+    exit
+exit
+interface "loopback" create
+    address 10.204.250.4/32
+    loopback
+exit
+bgp
+    bfd-enable
+    group "cisco"
+        min-route-advertisement 1
+        neighbor 10.202.0.3
+			authentication-key <password>
+			next-hop-self
+			import "add-SoO"
+			export "noLoop-ToCE"
+			peer-as 65001
+        exit
+    exit
+    no shutdown
+exit
+no shutdown
+```
+For both SR nodes, I have used some policy statements:
+```
+router
+    policy-options
+        begin
+        policy-statement "add-SoO" 
+            entry 10 
+                action accept 
+                    community add "SoO" 
+                exit 
+            exit 
+        exit 
+        policy-statement "noLoop-ToCE" 
+            entry 10 
+                from  
+                    protocol bgp-vpn 
+                    community "SoO" 
+                exit 
+                action reject 
+            exit 		 
+            entry 20 
+                from 
+                    protocol bgp-vpn 
+                exit 
+                action accept 
+            exit  
+        exit  
+```
