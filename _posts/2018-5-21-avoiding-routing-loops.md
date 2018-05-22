@@ -16,11 +16,11 @@ Based on the above diagram, I need to avoid a route distribution loop which can 
 
 ![alt text](https://cpajr.com/assets/2018-05-21-diagram2.png "Diagram2")
 
-⋅⋅1. Routes received via EIGRP for the legacy network
-⋅⋅2. Routes from EIGRP are redistributed into SR1 via BGP
-⋅⋅3. Those VPRN specific routes received via BGP are redistributed into MP-BGP
-⋅⋅4. SR2 will then redistribute MP-BGP routes into BGP to IOS2
-⋅⋅5. IOS2 will then redistribute BGP routes into EIGRP, completing the distribution loop
+1. Routes received via EIGRP for the legacy network
+2. Routes from EIGRP are redistributed into SR1 via BGP
+3. Those VPRN specific routes received via BGP are redistributed into MP-BGP
+4. SR2 will then redistribute MP-BGP routes into BGP to IOS2
+5. IOS2 will then redistribute BGP routes into EIGRP, completing the distribution loop
 
 To avoid this scenario I will tag routes received on both sides of BGP and then create policy to deny redistribution:
 
