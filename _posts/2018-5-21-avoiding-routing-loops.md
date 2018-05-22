@@ -116,7 +116,7 @@ route-map eigrp-to-bgp permit 20
 ```
 For SR2, the following is the configuration:
 ```
-router-id 172.16.1.1
+router-id 172.16.1.2
 autonomous-system 65001
 interface "to-cisco" create
     address 10.202.0.2/31
