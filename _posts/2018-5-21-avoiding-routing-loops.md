@@ -14,7 +14,7 @@ Consider the following diagram as a mockup of my lab:
 
 Based on the above diagram, I need to avoid a route distribution loop which can result in suboptimal routing.  The following diagram can better reflect the potential loop:
 
-![alt text](https://cpajr.com/assets/2018-5-21-diagram2.png "Diagram")
+![alt text](https://cpajr.com/assets/2018-05-21-diagram2.png "Diagram2")
 
 ⋅⋅1. Routes received via EIGRP for the legacy network
 ⋅⋅2. Routes from EIGRP are redistributed into SR1 via BGP
@@ -24,7 +24,7 @@ Based on the above diagram, I need to avoid a route distribution loop which can 
 
 To avoid this scenario I will tag routes received on both sides of BGP and then create policy to deny redistribution:
 
-![alt text](https://cpajr.com/assets/2018-5-21-diagram3.png "Diagram")
+![alt text](https://cpajr.com/assets/2018-05-21-diagram3.png "Diagram3")
 
 ### Configuration
 
