@@ -197,7 +197,7 @@ router
         exit  
 ```
 ### Lessons Learned
-1. BFD: I learned that BFD will not intiate a session until it is tied to a protocol.  In my case, I configured BFD on the interfaces, but the session wouldn't establish.  It wasn't until I tied it to BGP did the session begin.  
-2. BGP Redistribute Internal: I was struggling at one point to have BGP redistribute routes into EIGRP; it just would not work.  Finally, I found a command for `bgp redistribute-internal`.  Apparently, by default for Cisco, it will not redistribute iBGP routes to another protocol.  
-3. Policy Statements on Nokia: I had to give careful attention to the policy statement on the Nokia SR routers.  I kept missing statement to redistribute local or connected routes.  
-4. Route Filtering on Cisco: with the route-map I created for deny tagged routes, I had not originally included a permit statement (see the `route-map eigrp-to-bgp`).  By default, Cisco places an implied deny with its route-maps; I needed to add a permit to allow routes, which were not tagged, to be distributed into BGP.  
+1. **BFD**: I learned that BFD will not intiate a session until it is tied to a protocol.  In my case, I configured BFD on the interfaces, but the session wouldn't establish.  It wasn't until I tied it to BGP did the session begin.  
+2. **BGP Redistribute Internal**: I was struggling at one point to have BGP redistribute routes into EIGRP; it just would not work.  Finally, I found a command for `bgp redistribute-internal`.  Apparently, by default for Cisco, it will not redistribute iBGP routes to another protocol.  
+3. **Policy Statements on Nokia**: I had to give careful attention to the policy statement on the Nokia SR routers.  I kept missing statement to redistribute local or connected routes.  
+4. **Route Filtering on Cisco**: with the route-map I created for deny tagged routes, I had not originally included a permit statement (see the `route-map eigrp-to-bgp`).  By default, Cisco places an implied deny with its route-maps; I needed to add a permit to allow routes, which were not tagged, to be distributed into BGP.  
