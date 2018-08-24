@@ -8,7 +8,7 @@ Oh, the struggles one has with maintaining the AAA: authentication, authorizatio
 
 The hassle is that we want a certain group of users to have level 15 access while not allowing configuration authority.  To provide this, we leverage the command authorization in Tacacs+ and (the most important part) having a proper switch configuration.  
 
-The following is an example of our aaa configuration:
+The following is an example of our AAA configuration:
 
 ```
 aaa new-model
