@@ -1,7 +1,7 @@
 # Site
-name: "Test"
-title: "Test"
-description: "This is a test"
+name: "Charles Allen -- Exploring the world of Networking"
+title: "Charles Allen -- Exploring the world of Networking"
+description: "Exploring the world of Networking"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: / 
@@ -17,16 +17,6 @@ authors:
     name: Charlie
     display_name: Charlie
     web: https://cpajr.com
-  john:
-    name: John
-    display_name: John    
-    avatar: 'assets/images/avatar.png'
-    gravatar: b1cc14991db7a456fcd761680bbc8f81
-    email: wowthemesnet@gmail.com
-    web: https://www.wowthemes.net
-    twitter: https://twitter.com/wowthemesnet
-    description: "This is the author box. Write a short description of the author here. You are currently previewing Mediumish demo, a Jekyll template compatible with Github pages."
-
 # Plugins
 plugins:
   - jekyll-paginate
