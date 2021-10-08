@@ -1,6 +1,4 @@
 ---
-date: 2018-08-12
-layout: post
 title: 'Cisco Live 2018 and Network Segmentation'
 ---
 

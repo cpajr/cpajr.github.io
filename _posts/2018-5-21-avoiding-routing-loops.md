@@ -1,6 +1,4 @@
 ---
-date: 2018-05-21
-layout: post
 title: 'Avoiding Route Distribution Loops'
 ---
 

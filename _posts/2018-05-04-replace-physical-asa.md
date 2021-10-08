@@ -1,6 +1,4 @@
 ---
-date: 2018-05-04
-layout: post
 title: 'Replacing Physical ASA in an HA Configuration'
 ---
 

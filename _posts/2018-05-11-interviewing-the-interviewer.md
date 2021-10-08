@@ -1,6 +1,4 @@
 ---
-date: 2018-05-11
-layout: post
 title: 'Interviewing the Interviewer'
 ---
 

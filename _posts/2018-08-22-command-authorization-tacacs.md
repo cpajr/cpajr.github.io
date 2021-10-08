@@ -1,6 +1,4 @@
 ---
-date: 2018-08-22
-layout: post
 title: 'Cisco Command Authorization with Tacacs+'
 ---
 
