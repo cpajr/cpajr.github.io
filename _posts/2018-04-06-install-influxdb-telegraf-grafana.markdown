@@ -1,7 +1,5 @@
 ---
 title: 'Installing Influxdb, Telegraf, and Grafana on CentOS'
-categories:
-- Blog
 ---
 
 Recently I read a blog post from [Lindsay Hill](https://lkhill.com/telegraf-influx-grafana-network-stats/) where he show his process to install Grafana.  Wanting to have something similar within my own environment, I decided to do the same but on CentOS.  

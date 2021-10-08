@@ -7,7 +7,7 @@ I have a scenario where I am deploying an MPLS network to replace  multiple L3 n
 Consider the following diagram as a mockup of my lab:
 
 <p align="center">
-  <img src="https://cpajr.com/assets/2018-5-21-diagram.png">
+  <img src="https://cpajr.com/assets/images/2018-5-21-diagram.png">
 </p>
 
 ### The Problem
@@ -15,7 +15,7 @@ Consider the following diagram as a mockup of my lab:
 Based on the above diagram, I need to avoid a route distribution loop which can result in suboptimal routing.  The following diagram can better reflect the potential loop:
 
 <p align="center">
-  <img src="https://cpajr.com/assets/2018-05-21-diagram2.png">
+  <img src="https://cpajr.com/assets/images/2018-05-21-diagram2.png">
 </p>
 
 1. Routes received via EIGRP for the legacy network
@@ -27,7 +27,7 @@ Based on the above diagram, I need to avoid a route distribution loop which can 
 To avoid this scenario I will tag routes received on both sides of BGP and then create policy to deny redistribution:
 
 <p align="center">
-  <img src="https://cpajr.com/assets/2018-05-21-diagram3.png">
+  <img src="https://cpajr.com/assets/images/2018-05-21-diagram3.png">
 </p>
 
 ### Configuration
