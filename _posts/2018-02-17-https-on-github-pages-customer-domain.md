@@ -1,6 +1,4 @@
 ---
-date: 2018-02-17
-layout: post
 title: 'Providing HTTPS with a custom domain on Github pages'
 categories:
 - Blog
