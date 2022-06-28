@@ -84,8 +84,57 @@ There isn't much to share under this section.  I mount the `grafana.ini` through
 
 There are a couple of things to note here for Telegraf
 
-### SNMP Mibs
+### SNMP MIBS
 
-For my purpose, I am polling mostly network devices and, as of today, the only good way to get data from them is via SNMP[^1].
+For my purpose, I am polling mostly network devices and, as of today, the only good way to get data from them is via SNMP[^1].  However, using the default Docker container for Telegraf does not include the needed SNMP MIBS.  To overcome this, I pulled together my own group of needed MIBS and mounted it as a volume to the container.  
 
-[^1]: Cisco now provides a way to stream Telemetry from their 9200 and 9300 series switches.  There are plugins available into Telegraf which allows for this data to be streamed from the devices.  However, in my inital testing, I found it to be unreliable.    
+### Telegraf Configs
+
+There are numerous configurations available for Telegraf, but for an initial deployment there is only one change: Outputs.  In the telegraf.conf file, find the section for `outputs.influxdb`:
+
+  * Update `urls` to `urls = ["http://influxdb:8086"]`.  This will direct to the InfluxDB container
+  * Update `database` to the desire database within InfluxDB.  In this case, I updated it to `database = "telegraf"`
+
+```
+[[outputs.influxdb]]
+ 
+  urls = ["http://influxdb:8086"]
+  database = "telegraf"
+```
+
+## Grafana
+
+In my particular deployment, I wanted for the authentication to Grafana be done via SAML; particularly, I needed authentication to be done through Azure AD.  Thankfully, Grafana has already built-in the needed items for this to occur and [provided the needed documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/).  The following are the unique changes that I made:
+
+```
+[server]
+# The public facing domain name used to access grafana from a browser
+domain = monitor.cpajr.com
+
+# The full public facing url you use in browser, used for redirects and emails
+# If you use reverse proxy and sub path specify full url (with sub path)
+root_url = https://monitor.cpajr.com
+
+[auth]
+# Set to true to disable (hide) the login form, useful if you use OAuth, defaults to false
+disable_login_form = true
+
+#################################### Azure AD OAuth #######################
+[auth.azuread]
+name = Azure AD
+enabled = true
+allow_sign_up = true
+client_id = <Azure Client ID>
+client_secret = <Azure Client Secret>
+scopes = openid email profile
+auth_url = https://login.microsoftonline.com/<Tenant ID>/oauth2/v2.0/authorize
+token_url = https://login.microsoftonline.com/<Tenant ID>/oauth2/v2.0/token
+allowed_domains =
+allowed_groups =
+```
+
+With this all up and running, you can continue to follow the previous article I wrote.  
+
+Enjoy!
+
+[^1]: Cisco now provides a way to stream Telemetry from their 9200 and 9300 series switches.  There are plugins available into Telegraf which allows for this data to be streamed from the devices.  However, in my inital testing, I found it to be unreliable.  For further details see [this link](https://blogs.cisco.com/developer/getting-started-with-model-driven-telemetry)    
