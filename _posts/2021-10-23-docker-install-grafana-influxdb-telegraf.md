@@ -59,7 +59,7 @@ services:
     entrypoint: '/usr/bin/telegraf --config-directory /etc/telegraf/telegraf.d'
     volumes:
     - /projects/monitoring/telegraf/etc/telegraf:/etc/telegraf
-    - /var/run/docker.sock:/var/run/docker.sock
+    - /projects/monitoring/telegraf/mibs:/usr/share/snmp/mibs
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -71,9 +71,21 @@ services:
     - '127.0.0.1:3000:3000'
     volumes:
     - /projects/monitoring/grafana/var/lib/grafana:/var/lib/grafana
+    - /projects/monitoring/grafana/etc/grafana/grafana.ini:/etc/grafana/grafana.ini
 ```
 
 Allow me to give some explanation to each section and what is being accomplished.
 
 ## InfluxDB 
 
+There isn't much to share under this section.  I mount the `grafana.ini` through a volume so that unique configurations could be made; however, in my deployment, I decided to only keep the default configuration.  At this time, I decided not to encrypt communication to and from the InfluxDB.
+
+## Telegraf
+
+There are a couple of things to note here for Telegraf
+
+### SNMP Mibs
+
+For my purpose, I am polling mostly network devices and, as of today, the only good way to get data from them is via SNMP[^1].
+
+[^1]: Cisco now provides a way to stream Telemetry from their 9200 and 9300 series switches.  There are plugins available into Telegraf which allows for this data to be streamed from the devices.  However, in my inital testing, I found it to be unreliable.    
