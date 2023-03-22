@@ -4,7 +4,7 @@ classes: wide
 ---
 Anyone still use RANCID (Really Awesome New Cisco Config Differ) to backup network configuration?  In my current position, I just needed something "simple" that would capture backups of my network devices.  RANCID provided what I needed, and allowed for the versioning to placed into Git.  I've decided that it was probably time to replace RANCID with something a little more modern.  Now, I know there are many off-the-shelf options that would suffice my requirements.  However, I needed a low/no cost solution.  I decided to return to a tool I learned of several years ago: [Oxidized](https://github.com/ytti/oxidized).  
 
-One major issue with Oxidized is that it lacks an authentication method to protect it.  My intent was to front Oxidized with an authentication method that would leverage company's Azure AD instance.  In my research I learned of [OAuth2 Proxy](https://github.com/oauth2-proxy/oauth2-proxy) which acts a reverse proxy to the application and forces users to autheticate again the specified provider.  So, let's give this a shot.  
+One major issue with Oxidized is that it lacks an authentication method to protect it.  My intent was to front Oxidized with an authentication method that would leverage my company's Azure AD instance.  In my research I learned of [OAuth2 Proxy](https://github.com/oauth2-proxy/oauth2-proxy) which acts a reverse proxy to the application and forces users to autheticate again the specified provider.  So, let's give this a shot.  
 
 First, I want to continue my method to containerize the applications that I use.  Thankfully for both Oxidized and OAuth2 Proxy, someone actively updates the containerized versions based on changes to their code.  
 
@@ -113,7 +113,7 @@ oxidized-test  | * Listening on tcp://0.0.0.0:8888
 oxidized-test  | Use Ctrl-C to stop
 oxidized-test  | I, [2023-03-22T20:46:02.806040 #30]  INFO -- : Configuration updated for /switch
 ```
-You'll want to address any errors you find in deploying the container.  Also, you'll want to look for the output saying that `Configuration updated for /switch`.  
+You'll want to address any errors you find in deploying the container.  Also, you'll want to look for the output saying that `Configuration updated for /switch` -- this tells me that Oxidized successfully pulled the configuration from the switch.  
 
 # Nginx Reverse-Proxy Configuration
 
