@@ -60,9 +60,9 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Charlie Allen"
-  avatar : "/assets/images/bio-photo.png"
-  bio    : "I'm a husband, a father, and an IT Engineer"
+  #name   : "Charlie Allen"
+  #avatar : "/assets/images/bio-photo.png"
+  #bio    : "I'm a husband, a father, and an IT Engineer"
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
