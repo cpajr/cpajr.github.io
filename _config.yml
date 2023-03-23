@@ -59,17 +59,17 @@ plugins:
   - jemoji
   - jekyll-include-cache
 
-author:
+#author:
   #name   : "Charlie Allen"
   #avatar : "/assets/images/bio-photo.png"
   #bio    : "I'm a husband, a father, and an IT Engineer"
-  links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/cpajr"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/cpajr"
+  # links:
+  #   - label: "Twitter"
+  #     icon: "fab fa-fw fa-twitter-square"
+  #     url: "https://twitter.com/cpajr"
+  #   - label: "GitHub"
+  #     icon: "fab fa-fw fa-github"
+  #     url: "https://github.com/cpajr"
 
 footer:
   links:
