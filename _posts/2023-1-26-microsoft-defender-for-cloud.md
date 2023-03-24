@@ -1,7 +1,6 @@
 ---		
 title: 'Microsoft Defender for Cloud'
 classes: wide
-toc: true
 ---
 This past week has been one of those annoying and challenging weeks.  I help support three servers which our used for our Integrated Platform as a Service (IPaas) within Azure.  I was approached by the application owner stating that a process on the server was causing high CPU.  Specifically, it was the process called *Windows Defender Advanced Threat Protection service*.[^1]  
 <p align="center">
