@@ -1,6 +1,7 @@
 ---		
 title: 'Oxidized with Azure AD SAML Authentication'
 classes: wide
+toc: true
 ---
 Anyone still use RANCID (Really Awesome New Cisco Config Differ) to backup network configuration?  In my current position, I just needed something "simple" that would capture backups of my network devices.  RANCID provided what I needed, and allowed for the versioning to placed into Git.  I've decided that it was probably time to replace RANCID with something a little more modern.  Now, I know there are many off-the-shelf options that would suffice my requirements.  However, I needed a low/no cost solution.  I decided to return to a tool I learned of several years ago: [Oxidized](https://github.com/ytti/oxidized).  
 
