@@ -6,6 +6,6 @@ main:
   #- title: "Tags"
   #  url: /tags/
   - resume: "Resume"
-    url: /resume/
+    url: https://cpajr.com/resume/
   - title: "About"
     url: /about/
