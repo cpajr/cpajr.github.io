@@ -5,7 +5,7 @@ main:
   #  url: /categories/
   #- title: "Tags"
   #  url: /tags/
-  - resume: "Resume"
+  - title: "Resume"
     url: https://cpajr.com/resume/
   - title: "About"
     url: /about/
