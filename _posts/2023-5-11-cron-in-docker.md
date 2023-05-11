@@ -1,7 +1,6 @@
 ---		
 title: 'Cron in a Docker container'
 classes: wide
-toc: true
 ---
 
 A simple task: execute a cron job, within a docker container, to run a regularly needed item.  This seems simple, right?  Not so much within a docker container.  
