@@ -68,7 +68,7 @@ v=spf1 ip4:23.21.109.197 ip4:23.21.109.212 ip4:147.160.167.14 ip4:147.160.167.15
 In my research of DMARC policies and the associated SPF and DKIM records, I would not see the importance of domain alignment.  Let me leverage the following graphic to help explain domain alignment:
 
 <p align="center">
-  <img src="https://cpajr.com/assets/images/oxidized-2.png">
+  <img src="../assets/images/dmarc_domain_align.png">
 </p>
 
 In addition to the graphic, let's use the following example `Authentication-Results` header for reference:
