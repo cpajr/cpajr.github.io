@@ -2,6 +2,10 @@
 title: 'DMARC Compliant'
 classes: wide
 ---
+<p align="center">
+  <img src="../assets/images/dmarc.png">
+</p>
+
 This past year, both Google and Yahoo decided to start enforcing [stricter requirements for bulk email senders](https://blog.google/products/gmail/gmail-security-authentication-spam-protection/).  In these requirements, among other things, is the need to authenticate email.  To authenticate emails, three things are needed: DMARC, DKIM, and SPF.
 
 # DMARC
@@ -63,7 +67,9 @@ v=spf1 ip4:23.21.109.197 ip4:23.21.109.212 ip4:147.160.167.14 ip4:147.160.167.15
 # Domain Alignment
 In my research of DMARC policies and the associated SPF and DKIM records, I would not see the importance of domain alignment.  Let me leverage the following graphic to help explain domain alignment:
 
-![Domain Alignment](../assets/images/dmarc_domain_align.png)
+<p align="center">
+  <img src="https://cpajr.com/assets/images/oxidized-2.png">
+</p>
 
 In addition to the graphic, let's use the following example `Authentication-Results` header for reference:
 ```
