@@ -59,6 +59,7 @@ v=spf1 ip4:23.21.109.197 ip4:23.21.109.212 ip4:147.160.167.14 ip4:147.160.167.15
 - `ip4:xxx.xxx.xxx.xxx/xx` allows to specify the specific addresses, instead of using a tag or hostname.  In our example, the address `192.0.2.1` is the whitelisted address.  You can also use CIDR notation to specify a block of addresses.  
 - `-all` specifies that any IP addresses not provided in the SPF record should be rejected.  Alternative options to this include `~all` (called a soft-tail, allowing for other addresses to send but can be considered spam) and `+all` which signifies that any server can send an email.
 > **_NOTE:_** the `all` statement must be the final element in the SPF record.  Anything given after the `all` should not be evaluated (if following RFC requirements).  
+
 # Domain Alignment
 In my research of DMARC policies and the associated SPF and DKIM records, I would not see the importance of domain alignment.  Let me leverage the following graphic to help explain domain alignment:
 
